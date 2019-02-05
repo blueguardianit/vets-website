@@ -26,7 +26,10 @@ describe.each(TEAMSITES)('%s', (sitename, url) => {
     const element = await page.$(selector);
     await page.waitFor(1000);
     const image = await element.screenshot();
-    expect(image).toMatchImageSnapshot();
+    expect(image).toMatchImageSnapshot({
+      failureThreshold: '0.001',
+      failureThresholdType: 'percent',
+    });
   };
 
   beforeAll(async () => {
